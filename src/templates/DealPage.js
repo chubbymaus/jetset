@@ -13,12 +13,11 @@ const HeaderImage = styled.div`
     ),
     url("${props => props.image}")
       no-repeat  center;
-        ${
-          "" /* -webkit-background-size: cover;
+          -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover; */
-        }
+  background-size: cover; 
+        
 `
 
 export default class PostLayout extends Component {

@@ -24,7 +24,7 @@ const LISTING_QUERY = graphql`
 
 const Listing = () => (
   <Layout>
-    <div className="container is-fluid deal-list">
+    <div className="container deal-list">
       <div className="columns is-multiline">
         <StaticQuery
           query={LISTING_QUERY}

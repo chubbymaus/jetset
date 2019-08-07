@@ -1,3 +1,9 @@
+const dotenv = require('dotenv');
+
+if (process.env.NODE_ENV !== 'production'){
+  dotenv.config()
+}
+
 module.exports = {
   siteMetadata: {
     title: `JetSet`,
@@ -17,9 +23,9 @@ module.exports = {
     {
       resolve: `gatsby-source-contentful`,
       options: {
-        spaceId: "ongr1ksr0e0k",
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
         accessToken:
-          "c0bdb9b960672344a5bf1a668dd1941a311e18970cdff053fe7fc0299ef1b23a",
+        process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
     `gatsby-plugin-sass`,

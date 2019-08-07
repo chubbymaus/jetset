@@ -10,5 +10,3 @@ exports.components = {
   "component---src-pages-index-js": () => import("/Users/chubbymaus/Desktop/jetset/src/pages/index.js" /* webpackChunkName: "component---src-pages-index-js" */)
 }
 
-exports.data = () => import(/* webpackChunkName: "pages-manifest" */ "/Users/chubbymaus/Desktop/jetset/.cache/data.json")
-
