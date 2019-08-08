@@ -16,7 +16,7 @@ var _jsonStore = _interopRequireDefault(require("./json-store"));
 const DevPageRenderer = ({
   location
 }) => {
-  const pageResources = _loader.default.loadPageSync(location.pathname);
+  const pageResources = _loader.default.getResourcesForPathnameSync(location.pathname);
 
   return _react.default.createElement(_jsonStore.default, {
     location,

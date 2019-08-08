@@ -54,3 +54,16 @@
   margin-top: 50px;
   margin-bottom: 50px;
 }
+
+// Netlify Identity Styles
+
+.netlify-identity-menu{
+  list-style: none;
+  margin: 0;
+  display: flex;
+  justify-content: row;
+}
+
+.netlify-identity-signup{
+  margin-right: 24px;
+}

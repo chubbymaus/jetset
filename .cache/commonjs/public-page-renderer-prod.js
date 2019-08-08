@@ -11,10 +11,13 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _pageRenderer = _interopRequireDefault(require("./page-renderer"));
 
+var _loader = _interopRequireDefault(require("./loader"));
+
 const ProdPageRenderer = ({
-  location,
-  pageResources
+  location
 }) => {
+  const pageResources = _loader.default.getResourcesForPathnameSync(location.pathname);
+
   if (!pageResources) {
     return null;
   }

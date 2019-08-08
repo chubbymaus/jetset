@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import Link from "gatsby-link"
+import netlifyIdentity from 'netlify-identity-widget'
 import Logo from "../images/jetset3.png"
 class Navbar extends Component {
   state = {
@@ -34,6 +35,8 @@ class Navbar extends Component {
         })
       }
     })
+
+    netlifyIdentity.init();
   }
   render() {
     return (
@@ -71,28 +74,29 @@ class Navbar extends Component {
               id="navMenu"
             >
               <div className="navbar-end is-primary">
-                <div className="navbar-item">
+                {/* <div className="navbar-item">
                   <Link to="/howitworks" className="has-text-primary">
                     How It Works
                   </Link>
-                </div>
+                </div> */}
                 {/* <div className="navbar-item">
                   <Link to="/blog" className="has-text-primary">
                     Blog
                   </Link>
                 </div> */}
                 <div className="navbar-item">
-                  <Link to="/wordpress" className="has-text-primary">
-                    Log in
-                  </Link>
+                  <div
+                    data-netlify-identity-menu
+                    
+                  />
                 </div>
 
                 <div className="navbar-item">
                   <Link
                     to="/contact"
-                    className="button is-fullwidth is-danger has-text-white shadowed"
+                    className="button is-fullwidth is-danger is-outlined"
                   >
-                    Sign Up
+                    Say hello...
                   </Link>
                 </div>
               </div>
@@ -100,7 +104,7 @@ class Navbar extends Component {
           </div>
         </nav>
       </div>
-    )
+    );
   }
 }
 
