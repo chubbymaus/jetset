@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
+import netlifyIdentity from "netlify-identity-widget";
 import styled from "styled-components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
@@ -23,47 +24,59 @@ const HeaderImage = styled.div`
 export default class PostLayout extends Component {
   render() {
     const { contentfulBlog } = this.props.data
-    return (
-      <Layout>
-        <HeaderImage image={contentfulBlog.imageLink} />
-        <div className="blog-content container is-fluid">
-          <div className="columns">
-            <div className="column is-three-quarters">
-              <div className="card main-card shadowed">
-                <div className="card-content">
-                  <h1 className="title">{contentfulBlog.title}</h1>
+    if (netlifyIdentity.currentUser() !== null) {
+      return (
+        <Layout>
+          <HeaderImage image={contentfulBlog.imageLink} />
+          <div className="blog-content container is-fluid">
+            <div className="columns">
+              <div className="column is-three-quarters">
+                <div className="card main-card shadowed">
+                  <div className="card-content">
+                    <h1 className="title">{contentfulBlog.title}</h1>
 
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: contentfulBlog.body.childMarkdownRemark.html,
-                    }}
-                  />
-                  <br />
-                  <Link to="/deals" className="return-link">
-                    <div className="subtitle has-text-primary">
-                      <FontAwesomeIcon icon={["far", "arrow-left"]} />
-                      <span> Back to deals listing</span>
-                    </div>
-                  </Link>
-                  <br />
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: contentfulBlog.body.childMarkdownRemark.html
+                      }}
+                    />
+                    <br />
+                    <Link to="/deals" className="return-link">
+                      <div className="subtitle has-text-primary">
+                        <FontAwesomeIcon icon={["far", "arrow-left"]} />
+                        <span> Back to deals listing</span>
+                      </div>
+                    </Link>
+                    <br />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="column is-one-quarter">
-              <div className="card main-card shadowed">
-                <div className="card-content">
-                  <h2 className="subtitle">Recent Posts</h2>
-                  <h2 className="subtitle">Recent Posts</h2>
-                  <h2 className="subtitle">Recent Posts</h2>
-                  <h2 className="subtitle">Recent Posts</h2>
-                  <h2 className="subtitle">Recent Posts</h2>
+              <div className="column is-one-quarter">
+                <div className="card main-card shadowed">
+                  <div className="card-content">
+                    <h2 className="subtitle">Recent Posts</h2>
+                    <h2 className="subtitle">Recent Posts</h2>
+                    <h2 className="subtitle">Recent Posts</h2>
+                    <h2 className="subtitle">Recent Posts</h2>
+                    <h2 className="subtitle">Recent Posts</h2>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </Layout>
-    )
+        </Layout>
+      );
+    } else {
+      return (
+        <Layout>
+          <div className="container deal-list">
+            <div className="columns is-multiline">
+              <h1 className="title">Sign up or log in</h1>
+            </div>
+          </div>
+        </Layout>
+      );
+    }
   }
 }
 

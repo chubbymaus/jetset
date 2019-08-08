@@ -1,4 +1,6 @@
-import React from "react"
+import React, { Component } from "react";
+
+import netlifyIdentity from "netlify-identity-widget";
 import { Link, StaticQuery, graphql } from "gatsby"
 import Layout from "../../components/layout"
 const LISTING_QUERY = graphql`
@@ -11,6 +13,7 @@ const LISTING_QUERY = graphql`
           title
           imageLink
           slug
+          private
           body {
             childMarkdownRemark {
               excerpt
@@ -22,7 +25,10 @@ const LISTING_QUERY = graphql`
   }
 `
 
-const Listing = () => (
+class Listing extends Component{
+  render(){
+  if(netlifyIdentity.currentUser() !== null){  
+  return(
   <Layout>
     <div className="container deal-list">
       <div className="columns is-multiline">
@@ -62,6 +68,16 @@ const Listing = () => (
       </div>
     </div>
   </Layout>
-)
+  )} else {
+    return (
+      <Layout>
+        <div className="container deal-list">
+          <div className="columns is-multiline">
+          <h1 className='title'>Sign up or log in</h1>
+          </div>
+        </div>
+      </Layout>
+    );
+  }}};
 
 export default Listing
